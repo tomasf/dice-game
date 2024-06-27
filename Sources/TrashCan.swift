@@ -7,7 +7,7 @@ struct TrashCan: Shape3D {
     private let wallThickness = 1.0
     private let threadDepth = 1.0
     private let threadedHeight = 6.0
-    private let outerHeight = 110.0
+    private let outerHeight = 100.0
 
     private var innerDiameter: Double { outerDiameter - 2 * threadDepth - 2 * wallThickness }
 
@@ -31,7 +31,7 @@ struct TrashCan: Shape3D {
         let ridgeCount = 16
 
         // Horizontal bands
-        let bandWidth = 1.0
+        let bandWidth = 1.5
         let bandInset = 7.0
         let bandDepth = 0.25
 
@@ -73,7 +73,6 @@ struct TrashCan: Shape3D {
         let bodyThickness = lidThickness + 0.4
 
         let knurlDepth = 0.6
-        let knurlAngle = 10°
         let knurlCount = 80
         let diceOffset = 28.0
         let handleSize = Vector2D(7, 2.2)
@@ -97,10 +96,7 @@ struct TrashCan: Shape3D {
                     .translated(x: lidOuterDiameter / 2)
 
                 knurl
-                    .extruded(height: lidThickness, twist: knurlAngle)
-                    .repeated(around: .z, count: knurlCount)
-                knurl
-                    .extruded(height: lidThickness, twist: -knurlAngle)
+                    .extruded(height: lidThickness)
                     .repeated(around: .z, count: knurlCount)
             }
             .rotated(x: 180°)
@@ -142,11 +138,13 @@ struct TrashCan: Shape3D {
 
                 // Rings
                 let lidRadius = lidOuterDiameter / 2
-                let ringWidth = 0.8
+                let ringWidth = 0.6
+                let ringSpacing = (lidOuterDiameter - handleAreaDiameter) / 6
                 Rectangle(ringWidth)
                     .aligned(at: .center)
                     .rotated(45°)
-                    .distributed(at: [lidRadius * 0.6, lidRadius * 0.8], along: .x)
+                    .translated(x: handleAreaDiameter / 2)
+                    .distributed(at: [ringSpacing, ringSpacing * 2], along: .x)
                     .extruded()
             }
             .adding {
