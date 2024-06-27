@@ -1,6 +1,6 @@
 import SwiftSCAD
 
-save(environment: .defaultEnvironment.withTolerance(0.3)) {
+save(environment: .defaultEnvironment.withTolerance(0.6)) {
     Dice()
         .named("dice")
 

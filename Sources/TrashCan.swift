@@ -12,10 +12,10 @@ struct TrashCan: Shape3D {
     private var innerDiameter: Double { outerDiameter - 2 * threadDepth - 2 * wallThickness }
 
     private var thread: ScrewThread {
-        .init(pitch: 3,
+        .init(pitch: 5,
               majorDiameter: outerDiameter,
               minorDiameter: outerDiameter - 2 * threadDepth,
-              form: TrapezoidalThreadForm(angle: 90°, crestWidth: 0.2)
+              form: TrapezoidalThreadForm(angle: 90°, crestWidth: 0.6)
         )
     }
 
