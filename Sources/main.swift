@@ -2,15 +2,15 @@ import SwiftSCAD
 
 save(environment: .defaultEnvironment.withTolerance(0.6)) {
     Dice()
-        .named("dice")
+        .named("dice-game-dice")
 
     let can = TrashCan()
     can
-        .named("can")
+        .named("dice-game-can")
 
     can.lid
-        .named("lid")
+        .named("dice-game-lid")
 
     can.assembled
-        .named("assembled-can")
+        .named("dice-game-assembled-can")
 }

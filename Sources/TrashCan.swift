@@ -137,7 +137,6 @@ struct TrashCan: Shape3D {
                 .translated(z: -0.01)
 
                 // Rings
-                let lidRadius = lidOuterDiameter / 2
                 let ringWidth = 0.6
                 let ringSpacing = (lidOuterDiameter - handleAreaDiameter) / 6
                 Rectangle(ringWidth)
