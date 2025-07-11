@@ -119,6 +119,7 @@ struct TrashCan: Shape3D {
 
                             dice.rotated(to: i)
                                 .background()
+                                .hidden()
                         }
                         .translated(x: diceOffset, z: wallThickness)
                         .rotated(z: -Double(i) * 60°)
