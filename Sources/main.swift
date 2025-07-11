@@ -12,9 +12,9 @@ await Project {
     await Model("dice-game-lid") {
         can.lid
     }
-    await Model("dice-game-assembled-can") {
-        can.assembled
-    }
+    //await Model("dice-game-assembled-can") {
+    //    can.assembled
+    //}
 } environment: {
     $0.tolerance = 0.6
 }
