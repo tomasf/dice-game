@@ -1,16 +1,16 @@
 import Foundation
-import SwiftSCAD
+import Cadova
 
 struct Dice: Shape3D {
     let width = 16.0
 
-    @UnionBuilder3D
+    @GeometryBuilder3D
     var solid: any Geometry3D {
         let outerDiameter = width * 1.35
         let mask = Box(width).aligned(at: .center)
 
         Sphere(diameter: outerDiameter)
-            .intersection(mask)
+            .intersecting(mask)
     }
 
     var body: any Geometry3D {
@@ -23,12 +23,12 @@ struct Dice: Shape3D {
                     .extruded(height: fullPipDepth / Double(index + 1))
                     .aligned(at: .maxZ)
                     .translated(z: width / 2 + 0.01)
-                    .transformed(.rotation(from: .up, to: direction))
+                    .rotated(from: .up, to: direction)
             }
         }
     }
 
-    private var pips: [(direction: Vector3D, pattern: any Geometry2D)] {
+    private var pips: [(direction: Direction3D, pattern: any Geometry2D)] {
         let pip = Circle(diameter: width * 0.2)
         let wide = 2.4
         let tight = 1.6
@@ -36,7 +36,7 @@ struct Dice: Shape3D {
         return [
             (.up, pip),
             (.left, pip.repeated(along: .x, spacing: wide, count: 2)),
-            (.backward, pip.repeated(along: .x, spacing: tight, count: 3)
+            (.back, pip.repeated(along: .x, spacing: tight, count: 3)
                 .rotated(45°)),
             (.forward, pip.repeated(along: .x, spacing: wide, count: 2)
                 .repeated(along: .y, spacing: wide, count: 2)),

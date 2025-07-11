@@ -1,12 +1,58 @@
 {
+  "originHash" : "256a2323db25d6180bf4f9751eb9f9b080c117115a8b49bba77dc465eff94e35",
   "pins" : [
+    {
+      "identity" : "cadova",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tomasf/Cadova.git",
+      "state" : {
+        "revision" : "b2bdb81cd9b306b3b32e8d02adfae0b37548f09a",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "findfont",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tomasf/FindFont.git",
+      "state" : {
+        "revision" : "b9b687abad56844597f4e42c5da8f7d0ef9f80d5",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "freetype-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tomasf/freetype-spm.git",
+      "state" : {
+        "revision" : "b308b09b9d21215c522a73a38f670b7aca24843e",
+        "version" : "1.0.0"
+      }
+    },
     {
       "identity" : "helical",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tomasf/Helical.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "53d1a8f26af89c39cc2a0cac855dd02d0fa1a5ac"
+        "revision" : "ea90ed6390ce458be539d66bd513725600055563",
+        "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "manifold-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tomasf/manifold-swift.git",
+      "state" : {
+        "revision" : "63425e809ac19c9b317fdb3fae2c1f923f8900a2",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "nodal",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tomasf/Nodal.git",
+      "state" : {
+        "revision" : "763efeebe6bf1c26958dcbb29661a9af45cced52",
+        "version" : "0.3.1"
       }
     },
     {
@@ -28,14 +74,23 @@
       }
     },
     {
-      "identity" : "swiftscad",
+      "identity" : "threemf",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/tomasf/SwiftSCAD.git",
+      "location" : "https://github.com/tomasf/ThreeMF.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "731252ed759623f6c60c4bbec183eaa761ec8da0"
+        "revision" : "f4cc160e736bb414acdabb5d148dac0f8f8598e1",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "zip",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tomasf/Zip.git",
+      "state" : {
+        "revision" : "4f0d993ea822c313acbe6be8b0d40e7cb5e3a217",
+        "version" : "2.1.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

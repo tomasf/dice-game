@@ -1,16 +1,20 @@
-import SwiftSCAD
+import Cadova
 
-save(environment: .defaultEnvironment.withTolerance(0.6)) {
-    Dice()
-        .named("dice-game-dice")
+let can = TrashCan()
 
-    let can = TrashCan()
-    can
-        .named("dice-game-can")
-
-    can.lid
-        .named("dice-game-lid")
-
-    can.assembled
-        .named("dice-game-assembled-can")
+await Project {
+    await Model("dice-game-dice") {
+        Dice()
+    }
+    await Model("dice-game-can") {
+        can
+    }
+    await Model("dice-game-lid") {
+        can.lid
+    }
+    await Model("dice-game-assembled-can") {
+        can.assembled
+    }
+} environment: {
+    $0.tolerance = 0.6
 }

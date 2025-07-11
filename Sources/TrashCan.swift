@@ -1,5 +1,5 @@
 import Foundation
-import SwiftSCAD
+import Cadova
 import Helical
 
 struct TrashCan: Shape3D {
@@ -15,7 +15,7 @@ struct TrashCan: Shape3D {
         .init(pitch: 5,
               majorDiameter: outerDiameter,
               minorDiameter: outerDiameter - 2 * threadDepth,
-              form: TrapezoidalThreadForm(angle: 90°, crestWidth: 0.6)
+              form: TrapezoidalThreadform(angle: 90°, crestWidth: 0.6)
         )
     }
 
@@ -39,7 +39,6 @@ struct TrashCan: Shape3D {
             .adding {
                 Screw(thread: thread, length: threadedHeight)
                     .translated(z: outerHeight - threadedHeight)
-                    .forceRendered()
             }
             .subtracting {
                 Cylinder(bottomDiameter: innerDiameter - 2 * taper, topDiameter: innerDiameter, height: outerHeight)
@@ -59,13 +58,13 @@ struct TrashCan: Shape3D {
                     let x = outerDiameter / 2 - taper + f * taper
                     Circle(diameter: bandWidth)
                         .translated(x: x + bandWidth / 2 - bandDepth)
-                        .extruded()
+                        .revolved()
                         .translated(z: z)
                 }
             }
     }
 
-    @UnionBuilder3D
+    @GeometryBuilder3D
     var lid: any Geometry3D {
         let dice = Dice()
         let lidOuterDiameter = outerDiameter + 5
@@ -81,13 +80,11 @@ struct TrashCan: Shape3D {
         Circle(diameter: lidOuterDiameter)
             .extruded(
                 height: lidThickness,
-                topEdge: .chamfer(size: knurlDepth),
-                bottomEdge: .chamfer(size: knurlDepth),
-                method: .convexHull
+                topEdge: .chamfer(depth: knurlDepth),
+                bottomEdge: .chamfer(depth: knurlDepth)
             )
             .subtracting {
                 ThreadedHole(thread: thread, depth: threadedHeight, leadinChamferSize: 0.2)
-                    .forceRendered()
 
                 // Knurl
                 let knurl = Rectangle(knurlDepth)
@@ -102,7 +99,7 @@ struct TrashCan: Shape3D {
             .rotated(x: 180°)
             .aligned(at: .bottom)
             .adding {
-                Cylinder(diameter: innerDiameter - 1, height: bodyThickness)
+                Cylinder(diameter: innerDiameter - 1.5, height: bodyThickness)
             }
             .subtracting {
                 // Dice slots
@@ -144,14 +141,13 @@ struct TrashCan: Shape3D {
                     .rotated(45°)
                     .translated(x: handleAreaDiameter / 2)
                     .distributed(at: [ringSpacing, ringSpacing * 2], along: .x)
-                    .extruded()
+                    .revolved()
             }
             .adding {
                 // Handle
                 Box(x: handleAreaDiameter, y: handleSize.x, z: handleSize.y)
                     .aligned(at: .centerXY)
             }
-            .forceRendered()
     }
 
     var assembled: any Geometry3D {

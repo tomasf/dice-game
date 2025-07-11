@@ -1,5 +1,4 @@
-// swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version: 6.0
 
 import PackageDescription
 
@@ -7,13 +6,14 @@ let package = Package(
     name: "dice-game",
     platforms: [.macOS(.v14)], // Needed on macOS
     dependencies: [
-        .package(url: "https://github.com/tomasf/SwiftSCAD.git", from: "0.7.1"),
-        .package(url: "https://github.com/tomasf/Helical.git", branch: "main")
+        .package(url: "https://github.com/tomasf/Cadova.git", .upToNextMinor(from: "0.1.0")),
+        .package(url: "https://github.com/tomasf/Helical.git", from: "0.2.0")
     ],
     targets: [
         .executableTarget(
             name: "dice-game",
-            dependencies: ["SwiftSCAD", "Helical"]
+            dependencies: ["Cadova", "Helical"],
+            swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
     ]
 )
